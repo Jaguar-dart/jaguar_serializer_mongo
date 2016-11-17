@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Jaguar-dart/jaguar_serializer_mongo.svg?branch=master)](https://travis-ci.org/Jaguar-dart/jaguar_serializer_mongo)
+
 # jaguar_serializer_mongo
 
 Mongo serializer helpers for [jaguar_serializer](https://github.com/Jaguar-dart/jaguar_serializer)
