@@ -1,5 +1,5 @@
 import 'package:mongo_dart/mongo_dart.dart';
-import '../models/player/player.dart';
+import '../../test/models/player/player.dart';
 
 main() async {
   Db db = new Db('mongodb://localhost/jaguar_mongo_test');

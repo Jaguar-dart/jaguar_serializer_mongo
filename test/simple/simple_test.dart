@@ -3,7 +3,7 @@
 
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:test/test.dart';
-import '../../example/models/player/player.dart';
+import '../models/player/player.dart';
 
 main() {
   group('mongo.ObjectId', () {
