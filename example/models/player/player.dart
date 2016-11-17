@@ -42,4 +42,7 @@ class Player {
   bool emailConfirmed;
 
   static PlayerSerializer serializer = new PlayerSerializer();
+
+  String toString() =>
+      [id, allianceId, name, email, age, score, emailConfirmed].toString();
 }

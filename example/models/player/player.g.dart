@@ -8,8 +8,6 @@ part of serializer.test.models.player;
 // **************************************************************************
 
 abstract class _$PlayerSerializer implements MapSerializer<Player> {
-  const _$PlayerSerializer();
-
   Map toMap(Player model) {
     Map ret = new Map();
     ret["_id"] = new MongoId(#id).to(model.id);
