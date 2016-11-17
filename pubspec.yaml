@@ -1,0 +1,17 @@
+name: jaguar_serializer_mongo
+description: Mongo serializer helpers for jaguar_serializer
+version: 0.0.1
+authors:
+- Ravi Teja Gudapati <tejainece@gmail.com>
+- Kevin Segaud <segaud.kevin@gmail.com>
+homepage: http://jaguar-dart.github.io
+
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+
+dependencies:
+  mongo_dart:
+  jaguar_serializer:
+
+dev_dependencies:
+  test: '>=0.12.0 <0.13.0'
