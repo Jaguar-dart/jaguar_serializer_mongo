@@ -1,7 +1,7 @@
 library serializer.test.models.player;
 
 import 'package:jaguar_serializer/serializer.dart';
-import 'package:jaguar_serializer_mongo/serializers.dart';
+import 'package:jaguar_serializer_mongo/jaguar_serializer_mongo.dart';
 
 part 'player.g.dart';
 
