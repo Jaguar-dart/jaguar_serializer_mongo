@@ -6,18 +6,36 @@ library serializer.mongo_serializer;
 import 'package:mongo_dart/mongo_dart.dart' as mgo;
 import 'package:jaguar_serializer/serializer.dart';
 
-/// Field processor to serializer Mongo ObjectIds between Dart Object and Mongo
+/// Field processor to serializer Mongo ObjectId between Dart Object and Mongo
 @DefineFieldProcessor()
 class MongoId implements FieldProcessor<String, mgo.ObjectId> {
+  /// Field in the model to be processed
   final Symbol field;
 
   const MongoId(this.field);
 
+  /// Called to process field before decoding
   String from(mgo.ObjectId input) {
     return input.toHexString();
   }
 
+  /// Called to process field before encoding
   mgo.ObjectId to(String value) {
     return new mgo.ObjectId.fromHexString(value);
   }
+}
+
+/// Field processor to serializer Mongo DateTime between Dart Object and Mongo
+@DefineFieldProcessor()
+class MongoDateTime implements FieldProcessor<DateTime, DateTime> {
+  /// Field in the model to be processed
+  final Symbol field;
+
+  const MongoDateTime(this.field);
+
+  /// Called to process field before decoding
+  DateTime from(DateTime value) => value;
+
+  /// Called to process field before encoding
+  DateTime to(DateTime value) => value;
 }
