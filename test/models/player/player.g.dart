@@ -7,7 +7,7 @@ part of serializer.test.models.player;
 // Target: class PlayerSerializer
 // **************************************************************************
 
-abstract class _$PlayerSerializer implements MapSerializer<Player> {
+abstract class _$PlayerSerializer implements Serializer<Player> {
   Map toMap(Player model) {
     Map ret = new Map();
     ret["_id"] = new MongoId(#id).to(model.id);

@@ -9,8 +9,7 @@ part 'player.g.dart';
 @MongoId(#id)
 @MongoId(#allianceId)
 @GenSerializer()
-class PlayerSerializer extends _$PlayerSerializer
-    implements MapSerializer<Player> {
+class PlayerSerializer extends Serializer<Player> with _$PlayerSerializer {
   Player createModel() => new Player();
 
   PlayerSerializer();
