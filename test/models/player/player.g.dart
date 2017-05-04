@@ -8,27 +8,47 @@ part of serializer.test.models.player;
 // **************************************************************************
 
 abstract class _$PlayerSerializer implements Serializer<Player> {
-  Map toMap(Player model) {
+  Map toMap(Player model, {bool withType: false, String typeKey}) {
     Map ret = new Map();
-    ret["_id"] = new MongoId(#id).to(model.id);
-    ret["allianceId"] = new MongoId(#allianceId).to(model.allianceId);
-    ret["name"] = model.name;
-    ret["email"] = model.email;
-    ret["age"] = model.age;
-    ret["score"] = model.score;
-    ret["emailConfirmed"] = model.emailConfirmed;
+    if (model != null) {
+      if (model.id != null) {
+        ret["_id"] = new MongoId(#id).serialize(model.id);
+      }
+      if (model.allianceId != null) {
+        ret["allianceId"] =
+            new MongoId(#allianceId).serialize(model.allianceId);
+      }
+      if (model.name != null) {
+        ret["name"] = model.name;
+      }
+      if (model.email != null) {
+        ret["email"] = model.email;
+      }
+      if (model.age != null) {
+        ret["age"] = model.age;
+      }
+      if (model.score != null) {
+        ret["score"] = model.score;
+      }
+      if (model.emailConfirmed != null) {
+        ret["emailConfirmed"] = model.emailConfirmed;
+      }
+      if (modelString() != null && withType) {
+        ret[typeKey ?? defaultTypeInfoKey] = modelString();
+      }
+    }
     return ret;
   }
 
-  Player fromMap(Map map, {Player model}) {
+  Player fromMap(Map map, {Player model, String typeKey}) {
     if (map is! Map) {
       return null;
     }
     if (model is! Player) {
       model = createModel();
     }
-    model.id = new MongoId(#id).from(map["_id"]);
-    model.allianceId = new MongoId(#allianceId).from(map["allianceId"]);
+    model.id = new MongoId(#id).deserialize(map["_id"]);
+    model.allianceId = new MongoId(#allianceId).deserialize(map["allianceId"]);
     model.name = map["name"];
     model.email = map["email"];
     model.age = map["age"];
@@ -36,4 +56,6 @@ abstract class _$PlayerSerializer implements Serializer<Player> {
     model.emailConfirmed = map["emailConfirmed"];
     return model;
   }
+
+  String modelString() => "Player";
 }

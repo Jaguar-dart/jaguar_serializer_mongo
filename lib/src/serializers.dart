@@ -15,12 +15,12 @@ class MongoId implements FieldProcessor<String, mgo.ObjectId> {
   const MongoId(this.field);
 
   /// Called to process field before decoding
-  String from(mgo.ObjectId input) {
+  String deserialize(mgo.ObjectId input) {
     return input.toHexString();
   }
 
   /// Called to process field before encoding
-  mgo.ObjectId to(String value) {
+  mgo.ObjectId serialize(String value) {
     return new mgo.ObjectId.fromHexString(value);
   }
 }
@@ -34,8 +34,8 @@ class MongoDateTime implements FieldProcessor<DateTime, DateTime> {
   const MongoDateTime(this.field);
 
   /// Called to process field before decoding
-  DateTime from(DateTime value) => value;
+  DateTime deserialize(DateTime value) => value;
 
   /// Called to process field before encoding
-  DateTime to(DateTime value) => value;
+  DateTime serialize(DateTime value) => value;
 }
