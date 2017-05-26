@@ -3,6 +3,7 @@
 
 library serializer.mongo_serializer;
 
+import 'dart:async'
 import 'package:mongo_dart/mongo_dart.dart' as mgo;
 import 'package:jaguar_serializer/serializer.dart';
 
@@ -38,4 +39,24 @@ class MongoDateTime implements FieldProcessor<DateTime, DateTime> {
 
   /// Called to process field before encoding
   DateTime serialize(DateTime value) => value;
+}
+
+abstract class MgoAccess<ModelType> {
+  Serializer<ModelType> get codec;
+
+  ModelType decode(Map data) {
+    return codec.fromMap(data);
+  }
+
+  List<ModelType> decodeList(List<Map> data) {
+    return data.map((Map item) => codec.fromMap(item)).toList();
+  }
+
+  Map encode(ModelType data) {
+    return codec.toMap(data);
+  }
+
+  List<Map> encodeList(List<ModelType> data) {
+    return data.map((ModelType item) => codec.toMap(item)).toList();
+  }
 }
