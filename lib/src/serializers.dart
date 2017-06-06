@@ -3,7 +3,6 @@
 
 library serializer.mongo_serializer;
 
-import 'dart:async'
 import 'package:mongo_dart/mongo_dart.dart' as mgo;
 import 'package:jaguar_serializer/serializer.dart';
 

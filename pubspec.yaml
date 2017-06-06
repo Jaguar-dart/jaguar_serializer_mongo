@@ -1,6 +1,6 @@
 name: jaguar_serializer_mongo
 description: MongoDB serializer helpers for jaguar_serializer
-version: 0.0.4
+version: 0.0.5
 authors:
 - Ravi Teja Gudapati <tejainece@gmail.com>
 - Kevin Segaud <segaud.kevin@gmail.com>
