@@ -1,14 +1,16 @@
 library serializer.test.models.player;
 
-import 'package:jaguar_serializer/serializer.dart';
+import 'package:jaguar_serializer/jaguar_serializer.dart';
 import 'package:jaguar_serializer_mongo/jaguar_serializer_mongo.dart';
 
 part 'player.g.dart';
 
-@EnDecodeField(#id, asAndFrom: '_id')
-@MongoId(#id)
-@MongoId(#allianceId)
-@GenSerializer()
+@GenSerializer(fields: const {
+  'id': const EnDecode('_id'),
+}, processors: const {
+  'id': const MongoId(),
+  'allianceId': const MongoId(),
+})
 class PlayerSerializer extends Serializer<Player> with _$PlayerSerializer {
   Player createModel() => new Player();
 

@@ -8,15 +8,17 @@ part of serializer.test.models.player;
 // **************************************************************************
 
 abstract class _$PlayerSerializer implements Serializer<Player> {
+  final MongoId idMongoId = const MongoId();
+  final MongoId allianceIdMongoId = const MongoId();
+
   Map toMap(Player model, {bool withType: false, String typeKey}) {
     Map ret = new Map();
     if (model != null) {
       if (model.id != null) {
-        ret["_id"] = new MongoId(#id).serialize(model.id);
+        ret["_id"] = idMongoId.serialize(model.id);
       }
       if (model.allianceId != null) {
-        ret["allianceId"] =
-            new MongoId(#allianceId).serialize(model.allianceId);
+        ret["allianceId"] = allianceIdMongoId.serialize(model.allianceId);
       }
       if (model.name != null) {
         ret["name"] = model.name;
@@ -47,8 +49,8 @@ abstract class _$PlayerSerializer implements Serializer<Player> {
     if (model is! Player) {
       model = createModel();
     }
-    model.id = new MongoId(#id).deserialize(map["_id"]);
-    model.allianceId = new MongoId(#allianceId).deserialize(map["allianceId"]);
+    model.id = idMongoId.deserialize(map["_id"]);
+    model.allianceId = allianceIdMongoId.deserialize(map["allianceId"]);
     model.name = map["name"];
     model.email = map["email"];
     model.age = map["age"];
