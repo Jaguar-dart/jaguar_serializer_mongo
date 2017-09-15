@@ -10,7 +10,7 @@ main() {
     Db db;
 
     setUp(() async {
-      db = new Db('mongodb://localhost:27018/jaguar_mongo_test');
+      db = new Db('mongodb://localhost:27017/jaguar_mongo_test');
       await db.open();
     });
 
