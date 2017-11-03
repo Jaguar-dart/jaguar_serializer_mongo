@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+
+- Moved to jaguar_serializer 0.5.x
+
 ## 0.1.0
 
 - Moved to jaguar_serializer 0.4.x

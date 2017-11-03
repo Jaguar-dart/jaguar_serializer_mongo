@@ -4,15 +4,16 @@ services:
   - mongodb
 
 language: dart
+
+dart_task:
+- dartfmt: sdk
+- dartanalyzer
+- test: --platform vm
+
 dart:
   - stable
-  - dev
+#  - dev
 
 cache:
   directories:
     - $HOME/.pub-cache
-
-before_script:
- - chmod +x ./tool/travis.sh
-
-script: ./tool/travis.sh

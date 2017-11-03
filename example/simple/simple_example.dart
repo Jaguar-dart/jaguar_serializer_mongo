@@ -4,7 +4,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 import '../../test/models/player/player.dart';
 
 main() async {
-  Db db = new Db('mongodb://localhost/jaguar_mongo_test');
+  Db db = new Db('mongodb://localhost:27018/jaguar_mongo_test');
   await db.open();
 
   try {

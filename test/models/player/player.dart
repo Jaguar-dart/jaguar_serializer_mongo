@@ -6,10 +6,8 @@ import 'package:jaguar_serializer_mongo/jaguar_serializer_mongo.dart';
 part 'player.g.dart';
 
 @GenSerializer(fields: const {
-  'id': const EnDecode('_id'),
-}, processors: const {
-  'id': const MongoId(),
-  'allianceId': const MongoId(),
+  'id': const EnDecode(alias: '_id', processor: const MongoId()),
+  'allianceId': const EnDecode(processor: const MongoId()),
 })
 class PlayerSerializer extends Serializer<Player> with _$PlayerSerializer {
   Player createModel() => new Player();
