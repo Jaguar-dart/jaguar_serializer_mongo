@@ -1,5 +1,6 @@
 library serializer.test.models.player;
 
+import 'package:mongo_dart/mongo_dart.dart';
 import 'package:jaguar_serializer/jaguar_serializer.dart';
 import 'package:jaguar_serializer_mongo/jaguar_serializer_mongo.dart';
 
@@ -40,8 +41,13 @@ class Player {
   /// Should not be sent to client
   bool emailConfirmed;
 
+  Player();
+
+  static Player fromMap(Map map) => serializer.fromMap(map);
+
   static PlayerSerializer serializer = new PlayerSerializer();
 
-  String toString() =>
-      [id, allianceId, name, email, age, score, emailConfirmed].toString();
+  Map toMongo() => serializer.toMap(this);
+
+  String toString() => toMongo().toString();
 }

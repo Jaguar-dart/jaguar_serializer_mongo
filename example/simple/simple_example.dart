@@ -4,7 +4,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 import '../../test/models/player/player.dart';
 
 main() async {
-  Db db = new Db('mongodb://localhost:27018/jaguar_mongo_test');
+  Db db = new Db('mongodb://localhost:27017/jaguar_mongo_test');
   await db.open();
 
   try {
@@ -21,12 +21,12 @@ main() async {
       ..score = 500000
       ..emailConfirmed = true;
 
-    await coll.insert(Player.serializer.toMap(player));
+    await coll.insert(player.toMongo());
 
     Map result = await coll.findOne(where.id(id));
     print(result);
 
-    Player decoded = Player.serializer.fromMap(result);
+    Player decoded = Player.fromMap(result);
     print(decoded);
   } finally {
     await db.drop();

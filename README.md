@@ -4,6 +4,33 @@
 
 Mongo serializer helpers for [jaguar_serializer](https://github.com/Jaguar-dart/jaguar_serializer)
 
+# Convert Mongo's ObjectId
+
+Mongo expects ids to be of type [ObjectId]()s. But in Code, we expect them to be `String`s most of the time. 
+[MongoId] custom field processor can be used to automatically encode and decode to `ObjectId` from `String`.
+
+```dart
+@GenSerializer(fields: const {
+  'id': const EnDecode(alias: '_id', processor: const MongoId()),
+})
+class PlayerSerializer extends Serializer<Player> with _$PlayerSerializer {
+  Player createModel() => new Player();
+
+  PlayerSerializer();
+}
+
+/// Player model for the game
+class Player {
+  /// Id of the player
+  String id;
+
+  /// Name of the player
+  String name;
+
+  Player();
+}
+```
+
 ## Simple example
 
 ```dart
@@ -11,7 +38,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 import '../models/player/player.dart';
 
 main() async {
-  Db db = new Db('mongodb://localhost/jaguar_mongo_test');
+  Db db = new Db('mongodb://localhost:27017/jaguar_mongo_test');
   await db.open();
 
   try {
@@ -28,12 +55,12 @@ main() async {
       ..score = 500000
       ..emailConfirmed = true;
 
-    await coll.insert(Player.serializer.toMap(player));
+    await coll.insert(player.toMongo());
 
     Map result = await coll.findOne(where.id(id));
     print(result);
 
-    Player decoded = Player.serializer.fromMap(result);
+    Player decoded = Player.fromMap(result);
     print(decoded);
   } finally {
     await db.drop();

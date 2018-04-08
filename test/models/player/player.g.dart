@@ -3,59 +3,43 @@
 part of serializer.test.models.player;
 
 // **************************************************************************
-// Generator: SerializerGenerator
-// Target: class PlayerSerializer
+// Generator: JaguarSerializerGenerator
 // **************************************************************************
 
 abstract class _$PlayerSerializer implements Serializer<Player> {
-  final MongoId idMongoId = const MongoId();
-  final MongoId allianceIdMongoId = const MongoId();
+  final _mongoId = const MongoId();
 
-  Map toMap(Player model, {bool withType: false, String typeKey}) {
-    Map ret = new Map();
+  Map<String, dynamic> toMap(Player model,
+      {bool withType: false, String typeKey}) {
+    Map<String, dynamic> ret;
     if (model != null) {
-      if (model.id != null) {
-        ret["_id"] = idMongoId.serialize(model.id);
-      }
-      if (model.allianceId != null) {
-        ret["allianceId"] = allianceIdMongoId.serialize(model.allianceId);
-      }
-      if (model.name != null) {
-        ret["name"] = model.name;
-      }
-      if (model.email != null) {
-        ret["email"] = model.email;
-      }
-      if (model.age != null) {
-        ret["age"] = model.age;
-      }
-      if (model.score != null) {
-        ret["score"] = model.score;
-      }
-      if (model.emailConfirmed != null) {
-        ret["emailConfirmed"] = model.emailConfirmed;
-      }
-      if (modelString() != null && withType) {
-        ret[typeKey ?? defaultTypeInfoKey] = modelString();
-      }
+      ret = <String, dynamic>{};
+      setNullableValue(ret, "_id", _mongoId.serialize(model.id));
+      setNullableValue(ret, "allianceId", _mongoId.serialize(model.allianceId));
+      setNullableValue(ret, "name", model.name);
+      setNullableValue(ret, "email", model.email);
+      setNullableValue(ret, "age", model.age);
+      setNullableValue(ret, "score", model.score);
+      setNullableValue(ret, "emailConfirmed", model.emailConfirmed);
+      setTypeKeyValue(typeKey, modelString(), withType, ret);
     }
     return ret;
   }
 
-  Player fromMap(Map map, {Player model, String typeKey}) {
-    if (map is! Map) {
+  Player fromMap(Map<String, dynamic> map, {Player model, String typeKey}) {
+    if (map == null) {
       return null;
     }
     if (model is! Player) {
-      model = createModel();
+      model = new Player();
     }
-    model.id = idMongoId.deserialize(map["_id"]);
-    model.allianceId = allianceIdMongoId.deserialize(map["allianceId"]);
-    model.name = map["name"];
-    model.email = map["email"];
-    model.age = map["age"];
-    model.score = map["score"];
-    model.emailConfirmed = map["emailConfirmed"];
+    model.id = _mongoId.deserialize(map["_id"] as ObjectId);
+    model.allianceId = _mongoId.deserialize(map["allianceId"] as ObjectId);
+    model.name = map["name"] as String;
+    model.email = map["email"] as String;
+    model.age = map["age"] as int;
+    model.score = map["score"] as int;
+    model.emailConfirmed = map["emailConfirmed"] as bool;
     return model;
   }
 
